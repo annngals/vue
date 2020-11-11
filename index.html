@@ -1,0 +1,64 @@
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<div id="app" class="app">
+
+		<div class="container">
+			<h1>New note</h1>
+			<input v-model.lazy="title" placeholder="Title" class="title"><br>
+			<textarea v-model.lazy="text" placeholder="Content"></textarea><br>
+
+			<p>
+				<input type="radio" value="normal" v-model="radios">
+				<label for="one">normal</label>
+				<br>
+				<input type="radio" value="bold" v-model="radios">
+				<label for="two">bold</label>
+				<br>
+				<input type="radio" value="italic" v-model="radios">
+				<label for="three">italic</label>
+				<br>
+			</p>
+
+			<p> To-do list:</p>
+			<input type="checkbox" id="1" value="one" v-model="categories">
+			<label for="jack">1.</label>
+			<input type="checkbox" id="2" value="two" v-model="categories">
+			<label for="john">2.</label>
+			<input type="checkbox" id="3" value="three" v-model="categories">
+			<label for="mike">3.</label>
+			<br>
+
+			<p>Choose user:</p>
+			<select v-model="author">
+				<option v-for="author in authors">{{ author }}</option>
+			</select>
+		</div>
+
+		<div class="container2">
+			<h1>Note preview</h1>
+			<p>Title: {{ title }}</p>
+			<p>Text:</p>
+			<p v-if="radios == 'normal'" class="normal">{{ text }}</p>
+			<p v-else-if="radios == 'bold'" class="bold">{{ text }}</p>
+			<p v-else-if="radios == 'italic'" class="italic">{{ text }}</p>
+			<br>
+
+			<p> To-do list:</p>
+			<ul>
+				<li v-for="category in categories">{{ `${category}` }}</li>
+			</ul>
+
+			<p>{{ author }}</p>
+		</div>
+
+	</div>
+
+	<script src="index.js"></script>
+</body>
+</html>
